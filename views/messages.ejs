@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messages</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <h1>Messages</h1>
+    <ul>
+        <% messages.forEach(message => { %>
+            <li>
+                <strong>User: <%= message.user %></strong>
+                <strong><%= message.text.split(':')[0] %></strong>
+                <p><%= message.text.split(':').slice(1).join(':') %></p>
+                <em><%= new Date(message.added).toLocaleString() %></em>
+            </li>
+        <% }); %>
+    </ul>
+    <h2>New</h2>
+    <form action="/new" method="POST">
+        <div>
+            <label for="user">User:</label>
+            <input type="text" id="user" name="user" required>
+        </div>
+        <div>
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" required>
+        </div>
+        <div>
+            <label for="text">Message:</label>
+            <textarea id="text" name="text" required></textarea>
+        </div>
+        <button type="submit">Send</button>
+    </form>
+</body>
+</html>
